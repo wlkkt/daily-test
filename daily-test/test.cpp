@@ -1,6 +1,7 @@
-﻿#include <iostream>
-#include <vector>
-#include <list>
+﻿#include <algorithm>
+#include <iostream>
+#include <iterator>
+#include <string>
 using namespace std;
 
 ////////////////////////////一、vector的迭代器失效
@@ -86,39 +87,74 @@ using namespace std;
 //	cout << endl;
 //	return 0;
 //}
+/////////////////////////////////////////////////////////////////////
+//class Solution 
+//{
+//public:
+//    string tmp;//字符串尾插
+//    vector<string> res;//将尾插好的字符串成组尾插给res
+//    vector<string> board = { "","","abc","def","ghi","jkl","mno","pqrs","tuv","wxyz" };
+//    void DFS(int pos, string digits)//深度优先遍历
+//    {
+//        if (pos == digits.size())//当digits的每个有效字符都递归并尾插后返回
+//        {
+//            res.push_back(tmp);
+//            return;
+//        }
 //
-class Solution 
-{
-public:
-    string tmp;//字符串尾插
-    vector<string> res;//将尾插好的字符串成组尾插给res
-    vector<string> board = { "","","abc","def","ghi","jkl","mno","pqrs","tuv","wxyz" };
-    void DFS(int pos, string digits)//深度优先遍历
-    {
-        if (pos == digits.size())//当digits的每个有效字符都递归并尾插后返回
-        {
-            res.push_back(tmp);
-            return;
-        }
-
-        int num = digits[pos] - '0';
-
-        for (int i = 0; i < board[num].size(); i++)
-        {
-            tmp.push_back(board[num][i]);
-            DFS(pos + 1, digits);
-            tmp.pop_back();//删除
-        }
-    }
-
- 
-        vector<string> letterCombinations(string digits)
-        {
-            if (digits.size() == 0)
-            {
-                return res;
-            }
-            DFS(0, digits);
-            return res;
-        }
-};
+//        int num = digits[pos] - '0';
+//
+//        for (int i = 0; i < board[num].size(); i++)
+//        {
+//            tmp.push_back(board[num][i]);
+//            DFS(pos + 1, digits);
+//            tmp.pop_back();//删除
+//        }
+//    }
+//
+// 
+//        vector<string> letterCombinations(string digits)
+//        {
+//            if (digits.size() == 0)
+//            {
+//                return res;
+//            }
+//            DFS(0, digits);
+//            return res;
+//        }
+//};
+///////////////////////////////////////////////////////////////消除相同字符:2024.4.15
+//int main() 
+//{
+//        string a = {"abbba"};  
+//        string::iterator it = a.begin();
+//        while (it != a.end()-1)//-1防止迭代器越界
+//        {
+//            if ((*it) == *(++it))
+//            {
+//                cout << "正向删除一次" << endl;
+//                it = a.erase(it - 1, it + 1);
+//                while ((*it) == *(it - 1) && a[0] != a[1])
+//                {
+//                    it = a.erase(it - 1, it + 1);
+//                    cout << "逆向删除一次" << endl;
+//                }
+//            }
+//        }
+//        if (a[0] == a[1])//处理aa相同的情况
+//        {
+//            a.erase(0, 2);
+//            cout << "处理最后的相同字符" << endl;
+//        }
+//
+//        if (a.empty())
+//        {
+//            cout << 0;
+//        }
+//        else
+//        {
+//            cout << a;
+//        }
+//    
+//    return 0;
+//}
