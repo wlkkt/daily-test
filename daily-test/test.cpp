@@ -158,3 +158,16 @@ using namespace std;
 //    
 //    return 0;
 //}
+
+
+int main() {
+    string str, nstr;
+    cin >> str;
+    string::iterator it = str.begin();
+    while (it != str.end())
+    {
+        cout << *it;
+        ++it;
+    }
+    return 0;
+}
