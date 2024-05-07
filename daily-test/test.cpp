@@ -179,85 +179,161 @@
 ////	short s[7];
 ////	int n;
 ////};
-////int main()
-////{
-////	printf("%d\n", sizeof(union Un));
-////	return 0;
-////}
-#define _CRT_SECURE_NO_WARNINGS 1
-#include<ctype.h>
-#include<stdio.h>
-#include<string.h>
-#include<assert.h>
-#include<errno.h>
-int main()
-{
-	int arr[] = { 1,2,3,4,5,6,7,8,9,10 };
-	memset(arr, 0, 20);
-	return 0;
-}
+//////int main()
+//////{
+//////	printf("%d\n", sizeof(union Un));
+//////	return 0;
+//////}
+// 
+// 
 
-#define _CRT_SECURE_NO_WARNINGS 1
-#include<ctype.h>
-#include<stdio.h>
-#include<string.h>
-#include<assert.h>
-#include<errno.h>
-int main()
-{
-	char arr1[] = { 1,2,3,4,5 };
-	char arr2[] = { 1,3,5,7,9 };
-	int ret = memcmp(arr1, arr2, 5);
-	printf("%d ", ret);
-	return 0;
-}
+//#define _CRT_SECURE_NO_WARNINGS 1
+//#include<ctype.h>
+//#include<stdio.h>
+//#include<string.h>
+//#include<assert.h>
+//#include<errno.h>
+//int main()
+//{
+//	int arr[] = { 1,2,3,4,5,6,7,8,9,10 };
+//	memset(arr, 0, 20);
+//	return 0;
+//}
+//
+//#define _CRT_SECURE_NO_WARNINGS 1
+//#include<ctype.h>
+//#include<stdio.h>
+//#include<string.h>
+//#include<assert.h>
+//#include<errno.h>
+//int main()
+//{
+//	char arr1[] = { 1,2,3,4,5 };
+//	char arr2[] = { 1,3,5,7,9 };
+//	int ret = memcmp(arr1, arr2, 5);
+//	printf("%d ", ret);
+//	return 0;
+//}
+//
+//
+//#include <stdio.h>
+//#include <string.h>
+//#include <stdio.h>
+//#include <stdlib.h>
+//#include <stdio.h>
+//#include <string.h>
+//void* my_memmove(void* dest, const void* src, size_t n) {
+//    unsigned char* d = (unsigned char*)dest;
+//    const unsigned char* s = (const unsigned char*)src;
+//    if (d == s) {
+//        return d;
+//    }
+//
+//    if (s + n < d || d + n < s) {  // 没有内存重叠
+//        while (n--) {
+//            *(d++) = *(s++);
+//        }
+//    }
+//    else {  // 存在内存重叠
+//        if (d < s) {  // 目标地址在源地址之前，从前向后拷贝
+//            while (n--) {
+//                *(d++) = *(s++);
+//            }
+//        }
+//        else {  // 目标地址在源地址之后，从后向前拷贝
+//            d += n - 1;
+//            s += n - 1;
+//
+//            while (n--) {
+//                *(d--) = *(s--);
+//            }
+//        }
+//    }
+//    return dest;
+//}
+//
+//int main()
+//{
+//    int arr[] = { 1,2,3,4,5,6,7,8,9,10 };
+//    //my_memmove(arr+2, arr, 20);
+//    my_memmove(arr, arr + 2, 20);
+//    int i = 0;
+//    for (i = 0; i < 10; i++)
+//    {
+//        printf("%d ", arr[i]);
+//    }
+//    return 0;
+//}
 
 
-#include <stdio.h>
-#include <string.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <stdio.h>
-#include <string.h>
-void* my_memmove(void* dest, const void* src, size_t n) {
-    unsigned char* d = (unsigned char*)dest;
-    const unsigned char* s = (const unsigned char*)src;
-    if (d == s) {
-        return d;
-    }
 
-    if (s + n < d || d + n < s) {  // 没有内存重叠
-        while (n--) {
-            *(d++) = *(s++);
-        }
-    }
-    else {  // 存在内存重叠
-        if (d < s) {  // 目标地址在源地址之前，从前向后拷贝
-            while (n--) {
-                *(d++) = *(s++);
-            }
-        }
-        else {  // 目标地址在源地址之后，从后向前拷贝
-            d += n - 1;
-            s += n - 1;
 
-            while (n--) {
-                *(d--) = *(s--);
-            }
-        }
-    }
-    return dest;
-}
 
-int main()
-{
-    int arr[] = { 1,2,3,4,5,6,7,8,9,10 };
-    //my_memmove(arr+2, arr, 20);
-    my_memmove(arr, arr + 2, 20);
-    int i = 0;
-    for (i = 0; i < 10; i++)
-    {
-        printf("%d ", arr[i]);
-    }
-    return 0;
-}
+//class Solution {
+//public:
+//    int tribonacci(int n) {
+//
+//        if (n == 0) return 0;//边界处理
+//        if (n == 1 || n == 2) return 1;//边界处理
+//
+//        vector<int> dp(n + 1);//开辟dp表
+//
+//        dp[0] = 0, dp[1] = dp[2] = 1;//初始化的dp表
+//
+//        for (int i = 3; i <= n; i++)
+//            dp[i] = dp[i - 1] + dp[i - 2] + dp[i - 3];//状态转移方程
+//
+//        return dp[n];//题目要求返回第n个数
+//    }
+//};
+//
+//
+//class Solution {
+//public:
+//    int tribonacci(int n) {
+//        //1、创建并填满dp表
+//        //2、初始化
+//        //3、填表
+//        //4、返回值
+//        //处理边界情况
+//        if (n == 0) return 0;
+//        if (n == 1 || n == 2) return 1;
+//
+//        int a = 0, b = 1, c = 1, d = 0;
+//
+//        for (int i = 3; i <= n; i++)
+//        {
+//            d = a + b + c;
+//
+//            //滚动操作
+//            a = b;
+//            b = c;
+//            c = d;
+//        }
+//
+//        return d;
+//    }
+//};
+
+
+
+//class Solution {
+//public:
+//    int waysToStep(int n) {
+//
+//        const int MOD = 1e9 + 7;//1 * 10^9 + 7，MOD常表示要取模的数
+//
+//        if (n == 1 || n == 2) return n;
+//        if (n == 3)return 4;
+//
+//        vector<int> dp(n + 1);
+//
+//        dp[1] = 1, dp[2] = 2, dp[3] = 4;
+//        for (int i = 4; i <= n; i++)
+//        {
+//            dp[i] = ((dp[i - 1] + dp[i - 2]) % MOD + dp[i - 3]) % MOD;
+//            //每次做加法的时候都要取模防止越界
+//        }
+//        return dp[n];
+//    }
+//};
