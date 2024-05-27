@@ -337,3 +337,46 @@
 //        return dp[n];
 //    }
 //};
+
+#include <iostream>
+#include <thread>
+#include <mutex>
+#include <semaphore.h>
+#include <vector>
+
+std::mutex mtx;//申请互斥锁
+sem_t sem;//设定信号量
+
+//任务函数
+void task(int id) 
+{
+    sem_wait(&sem); // P操作
+    mtx.lock();
+    // 进临界区
+
+    std::cout << "Task ID: " << id << " is accessing the resource" << std::endl;
+
+    // 出临界区
+    mtx.unlock();
+
+    sem_post(&sem); // V操作
+}
+
+int main() {
+    const int num_threads = 5;
+    const int max_concurrent_threads = 2;
+    sem_init(&sem, 0, max_concurrent_threads); // 初始化信号量，最大并发访问数为2
+
+    std::vector<std::thread> threads;
+    for (int i = 0; i < num_threads; ++i) {
+        threads.emplace_back(task, i + 1);
+    }
+
+    for (auto& t : threads) {
+        t.join();
+    }
+
+    sem_destroy(&sem); // 销毁信号量
+
+    return 0;
+}
