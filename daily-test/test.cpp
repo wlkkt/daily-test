@@ -454,3 +454,58 @@ public:
         return quadruplets;
     }
 };
+
+
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
+class Solution {
+public:
+    ListNode* removeNthFromEnd(ListNode* head, int n) {
+        ListNode* temp = head;
+        int sz = 1;
+        if (head->next == nullptr)
+        {
+            return nullptr;
+        }
+
+        while (temp != nullptr && temp->next != nullptr)//先获取整个链表结点的个数
+        {
+            temp = temp->next;
+            ++sz;
+        }
+
+        ListNode* prev = head;
+        ListNode* cur = head->next;
+
+        if (n == sz)
+        {
+            head = prev->next;
+            prev->next = nullptr;
+            return head;
+        }
+
+        --sz;//如果不是头删，那么cur指向的应该是正数第二个，而不是第一个
+
+        while (cur != nullptr)
+        {
+            if (sz == n)
+            {
+                prev->next = cur->next;
+                cur->next = nullptr;
+                break;
+            }
+            cur = cur->next;
+            prev = prev->next;
+            --sz;
+        }
+        return head;
+    }
+};
